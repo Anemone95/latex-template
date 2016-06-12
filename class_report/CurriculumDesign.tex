@@ -1,0 +1,164 @@
+\documentclass[a4paper]{article}
+% 中文支持
+\usepackage[slantfont,boldfont]{xeCJK}
+\usepackage[fontset=adobe]{ctexcap}
+% 插图
+\usepackage{graphicx}
+\usepackage{float}
+%代码块
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{fullwidth}
+% 数学
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+% 枚举
+\usepackage{enumitem}
+%页边距
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+%中文
+\pagestyle{plain}
+\CTEXsetup[number={\chinese{section}},name={,、}]{section}
+\CTEXsetup[number={\chinese{subsection}},name={(,)}]{subsection}
+\CTEXsetup[number=\arabic{subsubsection},name={,.}]{subsubsection}
+\CTEXsetup[format={\Large\bfseries}]{section}
+\renewcommand{\contentsname}{\centerline{\heiti{目录}}}
+
+\floatname{algorithm}{算法}
+\renewcommand{\algorithmicrequire}{\textbf{输入:}}
+\renewcommand{\algorithmicensure}{\textbf{输出:}}
+
+\lstset{%行号
+  % numbers=left, % where to put the line-numbers
+  % numbersep=-1em, % where to put the line-numbers
+  %背景框
+  % framexleftmargin=2em,
+  frame=single,
+  breaklines=true,
+  %背景色
+  %样式
+  captionpos=b,
+  title=\lstname,
+  % keywordstyle=\bf\color{blue},
+  % identifierstyle=\bf(neocomplete_start_auto_complete),
+  % numberstyle=\color[RGB]{0,192,192},
+  % commentstyle=\it\color[RGB]{0,96,96},
+  % stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
+  %显示空格
+  % showstringspaces=false
+  %边距
+  xleftmargin=2em,xrightmargin=2em, aboveskip=1em,
+  %自定义字体
+  basicstyle=\ttfamily,
+  language=c
+}
+
+%枚举
+\setenumerate[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=\parskip}
+\setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=\parskip}
+\setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=\parskip}
+
+% 字号
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}     %初号
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont} %小初号
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}      %一号
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}      %二号
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}  %小二号
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}  %三号
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}%     四号
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}  %小四号
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}    %五号
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}   %小五号
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}  %六号
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}    %七号
+
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+
+\title{\heiti{\Huge{扬州大学信息工程学院\\课程设计报告\\\vspace{10.5cm}}}}
+\author{%
+  \renewcommand\arraystretch{1.5}
+  \begin{tabular}{rl}
+    \textbf{\Large{课程名称:}}& \textbf{\underline{\Large{操作系统原理}}}\\
+    \textbf{\Large{设计课题:}}& \tabincell{l}{\textbf{\underline{\Large{使用System V的IPC机制}}}\\
+                                             \textbf{\underline{\Large{实现``读者-写者''问题}}}}\\
+    \textbf{\Large{学生姓名:}}& \textbf{\underline{\Large{Wang Wu}}}\\
+    \textbf{\Large{班级:}}   & \textbf{\underline{\Large{网络1402}}}\\
+    \textbf{\Large{学号:}}   & \textbf{\underline{\Large{141405153}}}\\
+    \textbf{\Large{指导老师:}}& \textbf{\underline{\Large{李四}}}\\
+    \textbf{\Large{设计时间:}}& \textbf{\underline{\Large{\today}}}\\
+  \end{tabular}
+}
+\date{}
+
+% 枚举
+% \begin{enumerate}[itemindent=1em,label= (\arabic*)]
+% \item 创建信号量集，实现互斥信号量。
+% \item 创建共享内存，将“读者-写者”共享的文件保存其中，并保存读者共享的计数值。
+% \item 创建并发进程，实现“读者-写者”的并发操作。
+% \end{enumerate}
+
+%伪代码
+% \begin{fullwidth}[leftmargin=1.5em,width=0.93\textwidth]
+% 读者部分
+% \begin{algorithm}[H]
+% \caption{读者部分}
+% \label{alg1}
+% \begin{algorithmic}
+  % \WHILE{$Ture$}
+  % \STATE$P(mutex)$
+  % \STATE$rc:=rc+1$
+  % \IF{$rc=1$}
+  % \STATE$P(w)$
+  % \ENDIF
+  % \STATE$V(mutex)$
+  % \STATE$read action\dots$
+  % \STATE$P(mutex)$
+  % \STATE$rc:=rc-1$
+  % \IF{$rc=0$}
+  % \STATE$V(w)$
+  % \ENDIF
+  % \STATE$V(mutex)$
+  % \STATE$\dots(neocomplete_start_auto_complete)$
+  % \ENDWHILE
+% \end{algorithmic}
+% \end{algorithm}
+% \end{fullwidth}
+
+%图片
+% \begin{figure}[H]
+% \begin{center}
+% \includegraphics[width=0.92\textwidth]{img/res.png}     %最好eps[矢], png[位]
+% \caption{运行结果}
+% \end{center}
+% \end{figure}
+\begin{document}
+  \maketitle
+  \tableofcontents
+  \pagebreak
+  \section{AAA}
+  \subsection{BBB}
+  \subsubsection{CCC}
+  \heiti{hahaha}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.92\textwidth]{placeholder.jpg}
+    \caption{结果}
+  \end{figure}
+
+  \begin{fullwidth}[leftmargin=1.5em,width=0.93\textwidth]
+  测试
+  \begin{algorithm}[H]
+  \caption{伪代码}
+  \label{alg1}
+  \begin{algorithmic}
+    \IF{$rc=1$}
+    \STATE$P(w)$
+    \ENDIF
+  \end{algorithmic}
+  \end{algorithm}
+  \end{fullwidth}
+\end{document}
